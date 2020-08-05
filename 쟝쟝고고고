@@ -1,0 +1,199 @@
+## Django!
+
+
+
+
+1강
+====================================
+
+Django 란?
+----------------------------------
+
+-> Python으로 작성된 오픈 소스 웹 어플리케이션 프레임워크
+
+
+특징 : Python 기반, MVT 패턴, Admin 기능 제공, 간편한 URL Parsing
+
+
+Framework 란?
+-------------------------------------
+
+-> 기본적으로 필요한 기능을 갖춰, 원하는 기능 구현에 집중하도록 도와주는 개발 환경
+
+MTV 패턴이란?
+--------------------------------------
+
+Model - View - Template
+
+###URLconf : URL 경로에 맞춰 View와 Template 연결
+
+###Template : 사용자에게 보여지는 화면
+
+###View : 웹 요청을 받고, 전달받은 데이터를 처리해서 가공
+
+###Model : 데이터베이스에 저장되는 데이터
+
+
+
+2강 - 크앙
+=================================
+
+_도리님께 배웠던 거랑 똑같음_
+
+가상환경이란?
+-----------------------------------
+
+자신이 원하는 Python 환경 구축을 위해 필요한 모듈만 담아 놓는 바구니
+
+PIP란?
+-----------------------------------
+
+Python으로 작성된 패키지 소프트웨어를 관리하는 패키지 관리 시스템
+
+
+##VS Code 단축키 모음
+-----------------------------------
+
+[터미널 생성]
+Ctrl + Shift + `
+
+[터미널에서 이전에 썼던 명령어 불러오기]
+터미널에서 윗 방향키
+
+[현재 커서 위치의 코드 복사]
+Ctrl + D (여러 줄 복사도 가능)
+
+[현재 커서 위치의 코드 이동]
+Alt + 위, 아래 방향키
+
+[가상환경 생성]
+python -m venv <가상환경 이름>
+
+[가상환경 활성화]
+윈도우 : source <가상환경 이름>/Scripts/activate
+Linux, MAx : source<가상환경 이름>/bin/activate
+
+[가상환경 끄기]
+deactivate, Ctrl + C
+
+[Django 패키지 설치]
+pip install django
+
+[Django 프로젝트 생성]
+django-admin startproject <프로젝트 명> .(띄어쓰기)
+-> 마지막에 . (온점) 을 붙이면 새로운 폴더가 생기지 않아요! -> 자기 취향따라!
+
+[Django App 생성]
+python manage.py startapp <App 이름>
+
+[Django 로컬 서버 시작]
+python manage.py runserver
+
+
+##Django의 Project & App
+----------------------------------------------
+
+###[Project]
+  1. settings.py : 전체 프로젝트를 관리하는 설정 파일
+  2. urls.py : 프로젝트의 URL 관리 파일
+  3. wsgi.py, asgi.py : 프로젝트를 서비스하기 위한 파일 (배포할 때 아니면 볼 일 없음)
+  4. __init__.py : 해당 디렉토리가 Python Package의 일부임을 Python에게 알려주는 파일
+
+###[App]
+  1. views.py : 웹 요청을 받고, 전달받은 데이터를 처리해서 가공하는 파일
+  2. models.py : Database와 관련된 다양한 역할 수행
+  3. admin.py : 관리자 관련 파일
+  4. apps.py : Project에게 App의 존재 알려줄 때 활용되는 파일
+  
+  
+
+##Home 페이지 출력하기!
+---------------------------------------
+
+1. settings.py : Project에게 App의 존재 알리기
+
+2. Templates : User에게 보여줄 HTML 파일 만들기
+
+3. views.py : 요청이 들어오면 HTML 파일을 열어주는 함수 정의
+
+4. urls.py : url 요청을 views와 연결하기
+
+
+
+## Django 만들기!
+----------------------------------------------
+
+1. Github에서 Repository 만들기
+
+2. 파일 밑에 .gitignore 파일 생성
+  - 인터넷에 gitignore.io 접속
+  - 검색창에 VisualStudioCode, Django, Python 친 후 생성 클릭
+  - 나오는 창 전체 복사 후 .gitignore 파일에 붙여넣기
+  - 윗 줄 media 밑에 venv 적어주고 저장
+  
+3. 터미널창에 python -m venv venv
+  - venv 폴더 생성
+  
+4. 터미널창에 source venv/Scripts/activate
+  - 가상환경 실행
+  
+5. 터미널창에 pip install django
+  - pip 설치
+  
+6. 터미널창에 python -m pip install --upgrade pip
+  - 전 명령어에서
+  You should consider upgrading via the 'python -m pip install --upgrade pip' command
+  가 나올 경우 해주면 됨 -> python 업그레이드
+  -> 그다음에 다시 pip install django
+  
+ 7. 터미널창에 django-admin startproject dreamaryproject . (시작할 프로젝트 명 써주기 : 여기서는 dreamaryproject)
+  - 프로젝트 시작
+ 
+ 8. python manage.py runserver
+  - 서버 시작! 링크를 Ctrl + 클릭 하면 열림 // 서버 시작 끌 때는 Ctrl + C
+  
+  
+  
+  앱 시작하기
+  --------------------------------------
+  
+  1. 터미널 창에 python manage.py startapp page
+  
+  2. _pycache_ 폴더 밑에 settings.py -> INSTALLED_APPS 아래에
+        'page.apps.PageConfig', 써주기
+        
+* 참고 : settings.py에 LANGUAGE_CODE, TIME_ZONE 은 자기 취향에 따라 바꿔줘도 됨!
+
+  3. page 폴더 클릭하고 그 안에 templates 폴더 만들기 -> 이제부터 생성 위치 조심하기!!
+  
+  4. templates 폴더 클릭하고 그 안에 home.html 파일 만들기
+  
+  5. home.html 파일안에 html양식 지켜서 만들기
+  
+  6. views.py 에서
+    
+      <pre><code>
+      
+      def home(request):
+          return render(request, 'home.html')
+      
+      </pre></code>
+      
+      하기
+
+  7. urls.py 에서 path아래줄에다가
+  
+      <pre><code>
+      
+      path('',view.home, name = "home"),
+      
+      </pre></code>
+  
+      하기
+      
+   8. 터미널창에 python manage.py startapp page 로 서버시작, 링크 만든 후 확인하기!
+
+
+
+
+
